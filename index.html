@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>ToDo App</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="main">
+        <h1>My ToDo List</h1>
+        <form>
+            <input type="text" id="task-input" name="text-input" placeholder="Enter Any ToDo...">
+            <button>Add</button>
+        </form>
+        <ul id="task-list"></ul>
+    </div>
+    <script>
+       const form = document.querySelector('form');
+       const taskList = document.querySelector('#task-list');
+
+       function addTask(task){
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `<input type="checkbox" /> <span>${task}</span><button>Delete</button>`;
+        taskList.appendChild(listItem);
+       }
+       form.addEventListener('submit',(event)=>{
+        event.preventDefault();
+        const input = document.querySelector('#task-input');
+        const task = input.value;
+        addTask(task);
+        input.value = " "
+       })
+       taskList.addEventListener('click',(event)=>{
+        if(event.target.tagName === 'BUTTON'){
+            const listItem = event.target.parentElement
+            taskList.removeChild(listItem);
+        }
+       })
+    </script>
+</body>
+
+</html>
